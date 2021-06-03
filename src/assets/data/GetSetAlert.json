@@ -1,0 +1,25 @@
+﻿{
+  "selectedBudget": "My Spend",
+  "items": [{
+      "budgetHead": "Overall",
+      "category": "",
+      "notify": "50%"
+    },{
+      "budgetHead": "My Income",
+      "category": "Risk Type",
+      "notify": "20%"
+    },{
+      "budgetHead": "My Spend",
+      "category": "Consolodated",
+      "notify": "50%"
+    },{
+      "budgetHead": "My Borrowings",
+      "category": "Risk Type",
+      "notify": "20%"
+    },{
+      "budgetHead": "My Protection",
+      "category": "Consolodated",
+      "notify": "50%"
+    }
+  ]
+}

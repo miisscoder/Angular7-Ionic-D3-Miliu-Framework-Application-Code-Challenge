@@ -1,0 +1,59 @@
+<ion-content >
+    <div class="flex space-between middle top-nav">
+        <i class="icon-back" (click)="onBack()"></i>
+        <div class="flex end middle right-nav">
+            <a href="javascript:;" (click)="onSave()">Save</a>
+        </div>
+    </div>
+    <div class="page-title">Set Alert</div>
+    <div class="list">
+        <div class="list-item">
+            <ion-label>BUDGET HEAD</ion-label>
+            <div class="flex space-between middle
+                     dropdown-controller"
+                 (click)="expandBudget = !expandBudget">
+                <div>{{selectedBudget}}</div>
+                <i class="icon-dropdown"
+                   [ngStyle] = "{'transform': expandBudget ?  
+                   'rotate(180deg)': 'rotate(0deg)'}"></i>
+            </div>
+            <div *ngIf="expandBudget" class="dropdown-content">
+                <div *ngFor="let item of optionsBudget"
+                     class="flex space-between middle dropdown-content-item"
+                     (click)="onSelectBudget(item)">
+                    <div [ngStyle]="{'color': item === selectedBudget ?  '#08a5e1' : '#484848',
+                         'font-weight': item === selectedBudget ? '800' : 'normal'}">{{item}}</div>
+                    <i *ngIf="item === selectedBudget" class="icon-check"></i>
+                </div>
+            </div>
+        </div>
+        <div class="list-item"
+            [ngStyle]= "{'opacity': selectedBudget === 'Overall' ?  '0.5': '1'}">
+            <ion-label>CATEGORY</ion-label>
+            <div class="flex space-between middle
+                     dropdown-controller"
+                 (click)="onClickDropdownCategory()">
+                <div>{{selectedCategory}}</div>
+                <i class="icon-dropdown"
+                   [ngStyle] = "{'transform': expandCategory ?  
+                   'rotate(180deg)': 'rotate(0deg)'}"></i>
+            </div>
+            <div *ngIf="expandCategory" class="dropdown-content">
+                <div *ngFor="let item of optionsCategory"
+                     class="flex space-between middle dropdown-content-item"
+                     (click)="selectedCategory = item">
+                    <div [ngStyle]="{'color': item === selectedCategory ?  '#08a5e1' : '#484848',
+                         'font-weight': item === selectedBudget ? '800' : 'normal' }">{{item}}</div>
+                    <i *ngIf="item === selectedCategory " class="icon-check"></i>
+                </div>
+            </div>
+        </div>
+        <div class="list-item">
+            <ion-label>NOTIFY ME WHEN MY BUDGET</ion-label>
+            <div class="slider-value">{{sliderValue + '%'}}</div>
+            <ion-range min="0" max="100" step="1" 
+                       [(value)]="sliderValue"
+                       (ionChange)="onChange($event)"></ion-range>
+        </div>
+    </div>
+</ion-content>

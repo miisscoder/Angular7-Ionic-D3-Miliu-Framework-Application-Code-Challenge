@@ -1,0 +1,444 @@
+@import 'src/styles/font';
+/*ion-content*/
+ion-content {
+
+    .icon-menu-button {
+        background: url(../../assets/image/icon/menu-button-blue.png) no-repeat;
+        background-size: contain;
+        width: 0.5rem;
+        height: 0.4rem;
+        display: block;
+        margin-top: 0.92rem;
+        margin-left: 0.42rem;
+        margin-bottom: 0.65rem;
+    }
+
+    .page-title {
+        color: #484848;
+        font-size: 0.8rem;
+        line-height: 0.8rem;
+        font-weight: bold;
+        margin-left: 0.38rem;
+        letter-spacing: 0;
+    }
+
+    ion-slides {
+        padding: 0.65rem 0;
+        margin: 0 0.41rem;
+
+        ion-slide {
+            &.active {
+                margin-right: 0.42rem;
+            }
+
+            &:first-child {
+                padding-left: 0px;
+            }
+
+            &:last-child {
+                padding-right: 0px;
+                margin-right: 0.42rem;
+            }
+
+            .bank-card {
+                margin: 0;
+                text-align: left;
+                color: #ffffff;
+                padding: 0.4rem 0.42rem;
+
+                &.green {
+                    background-image: linear-gradient(170deg, #46c582, #29ac5e);
+                }
+
+                &.orange {
+                    background-image: linear-gradient(170deg, #ffa700, #ff8400);
+                }
+
+
+                img {
+                    width: 0.84rem;
+                    height: auto;
+                }
+
+                .type {
+                    font-weight: bold;
+                    font-size: 0.43rem;
+                }
+
+                .number {
+                    font-size: 0.43rem;
+                    letter-spacing: 1.1px;
+                }
+
+                .dollar {
+                    font-size: 0.4rem;
+                }
+
+                .money {
+                    font-size: 0.7rem;
+                    line-height: 0.8rem;
+                }
+
+                .card-bottom {
+                    margin-top: 0.2rem;
+                }
+            }
+
+            .bank-card.active {
+                margin: 0;
+                text-align: left;
+                color: #ffffff;
+                padding: 0.44rem 0.48rem;
+                box-shadow: 0 0 22px 0px rgba(0,0,0,0.1);
+
+                img {
+                    width: 0.88rem;
+                    height: auto;
+                }
+
+                .type {
+                    font-weight: bold;
+                    font-size: 0.47rem;
+                }
+
+                .number {
+                    font-size: 0.47rem;
+                    letter-spacing: 1.1px;
+                }
+
+                .dollar {
+                    font-size: 0.5rem;
+                }
+
+                .money {
+                    font-size: 0.8rem;
+                    line-height: 0.8rem;
+                }
+
+                .card-bottom {
+                    margin-top: 0.3rem;
+                }
+            }
+        }
+    }
+
+    .current-card {
+        height: 4.5rem;
+        background-image: linear-gradient(170deg, #08a5e1, #0382d2);
+        color: #ffffff;
+        margin: 0.65rem 0.41rem 0.35rem;
+        padding: 0;
+
+        &.red {
+            background-image: linear-gradient(170deg, #fb543f, #f93323);
+        }
+
+        .current-card-top {
+
+            .title {
+                font-size: 0.5rem;
+                color: #ffffff;
+                margin: 0.2rem 0.4rem;
+                font-weight: bold;
+            }
+
+            .icon-budget-menu {
+                background: url(../../assets/image/icon/budget-menu.png) no-repeat;
+                background-size: cover;
+                margin: 0.12rem 0.2rem;
+                width: 0.95rem;
+                height: 0.95rem;
+            }
+
+            .icon-budget-menu-red {
+                background: url(../../assets/image/icon/budget-menu-red.png) no-repeat;
+                background-size: cover;
+                margin: 0.12rem 0.2rem;
+                width: 0.95rem;
+                height: 0.95rem;
+            }
+        }
+
+        .current-card-bottom {
+            .icon-cart {
+                background: url(../../assets/image/icon/cart.png) no-repeat;
+                background-size: cover;
+                margin: 0.43rem;
+                width: 0.9rem;
+                height: 0.9rem;
+            }
+
+            .current-card-right-content {
+                .money {
+                    font-size: 1.15rem;
+                    line-height: 1.15rem;
+                    margin-right: 0.43rem;
+                    margin-bottom: 0.3rem;
+                }
+
+                .dollar {
+                    font-size: 0.6rem;
+                }
+
+                .typical {
+                    font-size: 0.44rem;
+                    margin-bottom: 0.4rem;
+                    margin-right: 0.43rem;
+                }
+            }
+        }
+    }
+
+    .warning-card {
+        margin: 0 0.41rem 0.35rem;
+        height: 1.9rem;
+
+        .icon-warning {
+            background: url(../../assets/image/icon/warning.png) no-repeat;
+            background-size: contain;
+            display: block;
+            width: 0.8rem;
+            height: 0.8rem;
+            margin-right: 0.4rem;
+            margin-left: 0.6rem;
+        }
+
+        .text-right {
+            font-size: 0.4rem;
+            width: calc(100% - 0.6 * 3rem);
+            padding-right: 0.77rem;
+
+            .text-warning {
+                color: #ff6633;
+                text-decoration: none;
+                margin-left: 0.2rem;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .battery-card {
+        height: 2.8rem;
+        position: relative;
+        box-shadow: none;
+        margin: 0 0.41rem 0.35rem;
+
+        .bk {
+            border: 5px solid #cccccc;
+            width: calc(100% - 8px);
+            margin-left: 8px;
+            position: relative;
+            height: 100%;
+            border-radius: 5px;
+            box-shadow: 0px 0px 2px 2px rgba(0,0,0, 0.1);
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 25%;
+                left: -12px;
+                height: 50%;
+                width: 8px;
+                display: block;
+                border-bottom-left-radius: 4px;
+                border-top-left-radius: 4px;
+                background: #cccccc;
+            }
+
+
+            .number {
+                font-size: 1.8em;
+                color: #ffffff;
+                position: absolute;
+                right: calc(0.7em - 5px);
+                top: calc(50% - 0.6em);
+            }
+        }
+
+        .percentage {
+            width: 100%;
+            margin-left: 8px;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            overflow: hidden;
+
+            .number {
+                font-size: 0.75rem;
+                color: #ffffff;
+                position: absolute;
+                right: 0.5rem;
+                top: calc(50% - 0.5rem);
+                opacity: 1;
+            }
+        }
+    }
+
+    .detail-card {
+        height: 2.8rem;
+        margin: 0 0.41rem 0.35rem;
+
+        .detail-item {
+            text-align: center;
+            width: 50%;
+            height: 70%;
+
+            .title {
+                font-size: 0.5rem;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            .number {
+                font-size: 0.7rem;
+
+                &.red-number {
+                    color: #ff6633;
+                }
+            }
+
+            &:first-child {
+                border-right: 1px solid #cccccc;
+            }
+        }
+    }
+
+    .set-budget-card {
+        margin: 0 0.41rem;
+        text-align: center;
+        padding-top: 0.9rem;
+
+        .icon-money {
+            width: 1.2rem;
+            height: 0.9rem;
+            background-size: auto 100%;
+            margin: 0 auto;
+        }
+
+        .text-set {
+            margin-top: 0.4rem;
+            font-size: 0.42rem;
+            text-align: center;
+        }
+
+        .btn-blue {
+            width: 45%;
+            height: 1.4rem;
+            border-radius: 5px;
+            background-color: #0099cc;
+            -webkit-box-shadow: 0 0 2px rgba(0,0,0,.1);
+            box-shadow: 0 0 2px rgba(0,0,0,.1);
+            color: #ffffff;
+            line-height: 1.4rem;
+            text-align: center;
+            font-size: 0.5rem;
+            font-weight: bold;
+            margin: 0.4rem auto 0.75rem;
+        }
+    }
+}
+
+.sliding-cover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    background: #ffffff;
+    opacity: 0.75;
+}
+
+/*bottom-sliding-content*/
+.bottom-sliding-content {
+    background-color: transparent;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    -webkit-transition: top 1s ;
+    transition: top 1s;
+
+    .bottom-card {
+        position: absolute;
+        bottom: 0.7rem;
+        background: #ffffff;
+        height: 9rem;
+        margin: 0 0.41rem;
+        padding: 0.68rem 0.8rem;
+        color: #484848;
+        
+        .icon-blue-close {
+            background: url(../../assets/image/icon/blue-close.png) no-repeat;
+            background-size: contain;
+            position: absolute;
+            top: 3.7%;
+            right: 3.7%;
+            width: 0.3rem;
+            height: 0.3rem;
+            z-index: 11;
+        }
+
+        ion-card-title {
+            font-size: 0.6rem;
+            font-weight: bold;
+            color: #484848;
+        }
+
+        p {
+            font-size: 0.4rem;
+        }
+
+        ion-card-subtitle {
+            font-weight: bold;
+            font-size: 0.5rem;
+            padding-top: 0.34rem;
+            padding-bottom: 0.2rem;
+            color: #484848;
+        }
+
+        .list-items {
+            height: 4.2rem;
+            overflow: auto;
+
+            .list-item {
+                border-top: 1px solid #cccccc;
+                height: calc(1.4rem - 1px);
+
+
+                &:first-of-type {
+                    border-top: none;
+                }
+
+                .date {
+                    font-size: 0.35rem;
+                }
+
+                i.icons {
+                    width: 0.9rem;
+                    height: 0.9rem;
+                    margin: 0 1em 0 0.5em;
+                }
+
+                .title {
+                    font-weight: bold;
+                    font-size: 0.43rem;
+                    color: #484848;
+                    text-transform: uppercase;
+                }
+
+                .type {
+                    font-size: 0.35em;
+                    color: #999999;
+                }
+
+                .money {
+                    color: #fb543f;
+                    font-size: 0.43rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,218 @@
+@import 'src/styles/font';
+/*ion-content*/
+ion-content {
+    position: relative;
+
+    .top-nav {
+        margin: 0.85rem 0.42rem 0.65rem;
+
+        .icon-back {
+            background-size: auto 100%;
+            width: 0.55rem;
+            height: 0.45rem;
+            display: block;
+        }
+    }
+
+    .title-nav {
+        margin: 0 0.42rem;
+        padding-bottom: 0.25rem;
+
+        .page-title {
+            color: #333333;
+            font-size: 0.8rem;
+            line-height: 0.8rem;
+            font-weight: bold;
+        }
+
+        .date {
+            color: #939393;
+            font-size: 0.36rem;
+        }
+    }
+
+    ion-card {
+        margin: 0.84rem 0.42rem 0.75rem;
+        padding: 0 0.4rem;
+        height: 2rem;
+        background-color: #f8f8f8;
+        box-shadow: none;
+
+        .card-title {
+            font-size: 0.5rem;
+            font-family: 'Quicksand-Bold';
+            margin-left: 0.42rem;
+        }
+
+        .amount {
+
+            .dollar {
+                font-size: 0.42rem;
+                font-weight: normal;
+            }
+
+            .money {
+                font-size: 0.7rem;
+                line-height: 0.7rem;
+                font-weight: normal;
+            }
+        }
+
+        &.active {
+            -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12);
+            box-shadow: 0 0 2px rgba(0,0,0,.12);
+
+            &.spend-card {
+                background-color: #fb543f;
+            }
+
+            &.income-card {
+                background-color: #08a5e1;
+            }
+
+            .card-title {
+                color: #ffffff;
+            }
+
+            .dollar {
+                color: #ffffff;
+            }
+
+            .money {
+                color: #ffffff;
+            }
+        }
+
+        .icon {
+            display: block;
+            width: 0.8rem;
+            height: 0.8rem;
+            background-position: center;
+        }
+    }
+
+    ion-slides {
+        height: calc(100% - 6.59rem);
+        overflow: hidden;
+
+        ion-slide {
+            height: 100%;
+            display: block;
+
+            &.left{
+                padding-top:0.5rem;
+            }
+            
+            .tr {
+                position: relative;
+                margin: 0.4rem 0;
+
+                .icon {
+                    position: absolute;
+                }
+
+                .instruction {
+                    .category {
+                        font-size: 0.4rem;
+                        font-family: 'Quicksand-Bold';
+                        text-transform: uppercase;
+                        color: #494949;
+                    }
+
+                    hr {
+                        width: 100%;
+                        height: 0px;
+                        margin: 0.04rem 0 0.07rem;
+                        border-width: 0.5px;
+                    }
+
+                    .number {
+                        .amount {
+                            font-size: 0.46rem;
+                            color: #484848;
+                        }
+
+                        .dot {
+                            margin: 0 0.1rem;
+                            font-size: 0.4rem;
+                            color: #484848;
+                        }
+
+                        .percent {
+                            color: #939393;
+                            font-size: 0.4rem;
+                        }
+                    }
+                }
+
+                &:nth-child(odd) {
+                    .instruction {
+                        width: 50%;
+                        text-align: right;
+
+                        .category {
+                            padding-right: 1.3rem;
+                        }
+
+                        .number {
+                            padding-right: 1.3rem;
+                        }
+                    }
+                }
+
+
+                &:nth-child(even) {
+                    .instruction {
+                        width: 50%;
+                        margin-left: 50%;
+                        text-align: left;
+
+                        .category {
+                            padding-left: 1.3rem;
+                        }
+
+                        .number {
+                            padding-left: 1.3rem;
+                        }
+                    }
+                }
+
+                &:nth-child(1) {
+                    margin-top: 0.9rem;
+                }
+
+                .icon {
+                    background-size: contain;
+                }
+            }
+
+
+            .icons {
+                border-top: 1px solid #cccccc;
+                height: 2.3rem;
+                padding: 0 0.2rem;
+
+                .icon-box {
+                    width: calc(20% - 0.4rem / 5);
+                }
+
+                .icon-type {
+                    width: 0.9rem;
+                    height: 0.9rem;
+                    display: block;
+                    margin: 0 auto 0.04rem;
+                }
+
+                .type-txt {
+                    font-size: 0.12rem;
+                    text-transform: uppercase;
+                    font-family: 'Quicksand-Bold';
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    text-align: center;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}

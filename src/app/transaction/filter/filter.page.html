@@ -1,0 +1,54 @@
+<ion-content>
+    <div class="flex space-between middle top-nav">
+        <i class="icon-back" (click)="onBack()"></i>
+        <div class="flex end middle right-nav">
+            <a href="javascript:;"  (click)="onApply()">Apply</a>
+        </div>
+    </div>
+    <div class="page-title">Filter</div>
+    <div class="list">
+        <div class="list-item">
+            <ion-label>ACCOUNT</ion-label>
+            <div class="flex space-between middle
+                     dropdown-controller"
+                 (click)="expandBudget = !expandBudget">
+                <div>{{selectedBudget}}</div>
+                <i class="icon-dropdown"
+                   [ngStyle]="{'transform': expandBudget ?
+                   'rotate(180deg)': 'rotate(0deg)'}"></i>
+            </div>
+            <div *ngIf="expandBudget" class="dropdown-content">
+                <div *ngFor="let item of optionsBudget"
+                     class="flex space-between middle dropdown-content-item"
+                     [ngStyle]="{ 'font-weight': item === selectedBudget ?
+                     'bold' : 'normal'}"
+                     (click)="selectedBudget = item">
+                    <div [ngStyle]="{'color': item === selectedBudget ?
+                     '#08a5e1' : '#484848' }">{{item}}</div>
+                    <i *ngIf="item === selectedBudget" class="icon-check"></i>
+                </div>
+            </div>
+        </div>
+        <div class="list-item"
+             [ngStyle]="{'opacity': selectedBudget === 'Overall' ?  '0.5': '1'}">
+            <ion-label>PERIOD OF TIME</ion-label>
+            <div class="flex space-between middle
+                     dropdown-controller"
+                 (click)="expandCategory = !expandCategory">
+                <div>{{selectedCategory}}</div>
+                <i class="icon-dropdown"
+                   [ngStyle]="{'transform': expandCategory ?
+                   'rotate(180deg)': 'rotate(0deg)'}"></i>
+            </div>
+            <div *ngIf="expandCategory" class="dropdown-content">
+                <div *ngFor="let item of optionsCategory;let i = index"
+                     class="flex space-between middle dropdown-content-item"
+                     (click)="onClickCategory(item, i)">
+                    <div>{{item}}</div>
+                    <i *ngIf="i === selectedCategoryId "
+                       class="icon-check"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

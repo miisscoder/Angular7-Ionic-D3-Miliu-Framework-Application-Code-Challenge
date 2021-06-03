@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\dashboard",
+    "\\src\\assets",
+    "\\src\\services",
+    "\\src\\styles"
+  ],
+  "SelectedNode": "\\src\\app\\dashboard\\dashboard.page.scss",
+  "PreviewInSolutionExplorer": false
+}

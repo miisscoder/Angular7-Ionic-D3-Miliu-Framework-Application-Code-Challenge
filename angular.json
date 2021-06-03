@@ -33,16 +33,13 @@
             ],
             "styles": [
               {
-                "input": "src/theme/variables.scss"
-              },
-              {
                 "input": "src/global.scss"
               },
               {
                 "input": "src/app/app.scss"
               }
             ],
-            "scripts": [],
+            "scripts": ["node_modules/bootstrap-slider/dist/bootstrap-slider.min.js"],
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -106,7 +103,6 @@
             "scripts": [],
             "assets": [
               {
-                "glob": "favicon.ico",
                 "input": "src/",
                 "output": "/"
               },

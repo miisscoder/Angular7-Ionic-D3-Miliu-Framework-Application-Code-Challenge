@@ -1,0 +1,73 @@
+<ion-content class="view">
+    <div class="flex start middle top-nav">
+        <i class="icon-back" (click)="onBack()"></i>
+    </div>
+    <div class="flex space-between bottom title-nav">
+        <div class="page-title">My Spend View</div>
+        <div class="date">{{data['date']}}</div>
+    </div>
+    <ion-card class="total-card spend-card active 
+              flex space-between middle">
+        <div class="flex start middle">
+            <i class="icon icon-cart"></i>
+            <div class="card-title">Total Spend</div>
+        </div>
+        <div class="flex center top amount">
+            <div class="dollar">$</div>
+            <div class="money">{{ numberWithCommas(data['totalSpend'])}}</div>
+        </div>
+    </ion-card>
+    <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide class="left">
+            <div class="tr flex start middle"
+                    *ngFor="let item of data ['spend'];let i = index"
+                 [ngStyle]="{'height.rem': circles[i]}">
+                <i class="icon icon-{{getLowerCase(item.category)}}"
+                   [ngStyle]="{'width.rem': circles[i],
+                   'height.rem': circles[i],
+                   'left': 'calc(50% - '+ circles[i] + 'rem' + ' / 2)'}"></i>
+                <div class="instruction flex column center">
+                    <div class="category">{{item['category']}}</div>
+                    <hr />
+                    <div class="flex end bottom number"
+                         [ngClass]="{'start' : i % 2 === 1,
+                         'end' : i % 2 === 0}">
+                        <div class="amount">${{item['amount']}}</div>
+                        <div class="dot">.</div>
+                        <div class="percent">{{item['percent']}}%</div>
+                    </div>  
+                </div>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <app-bar-chart [diaryData]="diaryData"></app-bar-chart>
+            <div class="flex space-around middle icons">
+                <div class="flex column center icon-box">
+                    <i class="icon-type icon-rent-utilities"
+                        (click)="onType('rent & utilities')"></i>
+                    <div class="type-txt">rent & utilities</div>
+                </div>
+                <div class="flex column center icon-box">
+                    <i class="icon-type icon-travel"
+                        (click)="onType('travel')"></i>
+                    <div class="type-txt">travel</div>
+                </div>
+                <div class="flex column center icon-box">
+                    <i class="icon-type icon-food"
+                        (click)="onType('food')"></i>
+                    <div class="type-txt">food</div>
+                </div>
+                <div class="flex column center icon-box">
+                    <i class="icon-type icon-shopping" 
+                       (click)="onType('shopping')"></i>
+                    <div class="type-txt">shopping</div>
+                </div>
+                <div class="flex column center icon-box">
+                    <i class="icon-type icon-tax"
+                        (click)="onType('tax')"></i>
+                    <div class="type-txt">tax</div>
+                </div>
+            </div>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

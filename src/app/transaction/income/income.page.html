@@ -1,0 +1,59 @@
+<ion-content class="view">
+    <div class="flex start middle top-nav">
+        <i class="icon-back" (click)="onBack()"></i>
+    </div>
+    <div class="flex space-between bottom title-nav">
+        <div class="page-title">My Spend View</div>
+        <div class="date">{{data['date']}}</div>
+    </div>
+    <ion-card class="total-card income-card active 
+              flex space-between middle"
+              (click)="onType('')">
+        <div class="flex start middle">
+            <i class="icon icon-money-white"></i>
+            <div class="card-title">Total Income</div>
+        </div>
+        <div class="flex center top amount">
+            <div class="dollar">$</div>
+            <div class="money">{{ numberWithCommas(data['totalIncome'])}}</div>
+        </div>
+    </ion-card>
+    <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide>
+            <div class="tr flex start middle"
+                    *ngFor="let item of data['income'];let i = index"
+                 [ngStyle]="{'height.px': 64 * (10 - i)/10}">
+                <i class="icon icon-{{getLowerCase(item.category)}}"
+                   [ngStyle]="{'width.px': 64 * (10 - i)/10,
+                   'height.px': 64 * (10 - i)/10,
+                   'left': 'calc(50% - 32px * (10 - '+ i +' ) / 10)'}"></i>
+                <div class="instruction flex column center">
+                    <div class="category">{{item['category']}}</div>
+                    <hr />
+                    <div class="flex bottom number"
+                         [ngClass]="{'start' : i % 2 === 1,
+                         'end' : i % 2 === 0}">
+                        <div class="amount">${{item['amount']}}</div>
+                        <div class="dot">.</div>
+                        <div class="percent">{{item['percent']}}%</div>
+                    </div>  
+                </div>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <app-bar-chart [diaryData]="diaryData"></app-bar-chart>
+            <div class="flex space-around middle icons">
+                <div class="flex column center">
+                    <i class="icon-type icon-income"
+                       (click)="onType('income')"></i>
+                    <div class="type-txt">SALARY</div>
+                </div>
+                <div>
+                    <i class="icon-type icon-other-income"
+                       (click)="onType('other income')"></i>
+                    <div class="type-txt">OTHER INCOME</div>
+                </div>
+            </div>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

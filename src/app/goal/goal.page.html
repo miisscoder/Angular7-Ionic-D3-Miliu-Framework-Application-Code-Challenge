@@ -1,0 +1,67 @@
+<ion-content>
+    <div class="flex space-between bottom top-nav">
+        <i class="icon-menu-button" (click)="menuOpen()"></i>
+        <div class="flex end bottom right-nav">
+            <a href="javascritp:;" (click)="onBack()">Back</a>
+        </div>
+    </div>
+    <div class="page-title">Goals</div>
+    <ion-list>
+        <ion-item-sliding *ngFor="let item of data;let i = index;">
+            <ion-item>
+                <i class="icon icon-dots"></i>
+                <ion-card class="flex space-between stretch goal-card">
+                    <div class="left-part flex center middle
+                           {{getIconName(item?.category)}}">
+                        <i class="icons icon-w-goal-{{getIconName(item?.category)}}"></i>
+                    </div>
+                    <div class="right-part">
+                        <div class="flex space-between top">
+                            <div>
+                                <div class="type">{{item?.name}}</div>
+                                <div class="date">By {{item?.completionDate}}</div>
+                            </div>
+                            <div class="percentage flex end top">
+                                <span class="dollar">$</span>
+                                <span class="number">{{this.numberCommaService.execute(item?.amount)}}</span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar {{getIconName(item?.category)}}"
+                                 [style.width]="getProgressBarWidthPercentage(item?.amount, item?.goal)"></div>
+                        </div>
+                        <div class="flex space-between middle">
+                            <div>{{getPercentage(item?.amount, item?.goal)}}</div>
+                            <div class="goal flex start middle">
+                                ${{this.numberCommaService.execute(item?.goal)}}
+                            </div>
+                        </div>
+                    </div>
+                </ion-card>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option>
+                    <a href="javascript:;" routerLink="set" class="option-content">
+                        <i class="icon icon-add"></i>
+                        <div class="operation-label">Add</div>
+                        <div class="operation-label">Funds</div>
+                    </a>
+                </ion-item-option>
+                <ion-item-option>
+                    <div class="option-content ">
+                        <i class="icon icon-close"></i>
+                        <div class="operation-label">Tranfer</div>
+                        <div class="operation-label">& Close</div>
+                    </div>
+                </ion-item-option>
+                <ion-item-option class="flex column center">
+                    <div class="option-content">
+                        <i class="icon icon-facebook"></i>
+                        <div class="operation-label">Share on</div>
+                        <div class="operation-label"> Facebook</div>
+                    </div>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>

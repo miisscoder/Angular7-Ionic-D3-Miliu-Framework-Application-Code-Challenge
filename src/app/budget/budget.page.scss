@@ -1,0 +1,380 @@
+@import 'src/styles/font';
+/*ion-content*/
+ion-content {
+    position: relative;
+
+    .top-nav {
+        margin: 0.85rem 0.42rem 0.6rem;
+
+        .icon-menu-button {
+            background: url(../../assets/image/icon/menu-button-blue.png) no-repeat;
+            background-size: contain;
+            background-position: center;
+            width: 0.55rem;
+            height: 0.55rem;
+            display: block;
+        }
+
+        .right-nav {
+            font-size: 0.5rem;
+            line-height: 0.5rem;
+            color: #08a5e1;
+
+            a {
+                color: #08a5e1;
+                font-family: 'Quicksand-Bold';
+            }
+
+            span {
+                margin: 0 0.15rem;
+                font-family: 'Quicksand-Bold';
+            }
+        }
+    }
+
+
+    .page-title {
+        font-size: 0.8rem;
+        line-height: 0.8rem;
+        margin: 0 0.42rem 0.7rem;
+        color: #484848;
+        font-family: 'Quicksand-Bold';
+    }
+
+    .income-card {
+        text-align: left;
+        padding: 0.42rem 0.42rem 0.45rem;
+        margin: 0 0.42rem 0.5rem;
+
+        .icon-money-black {
+            width: 0.7rem;
+            height: 0.7rem;
+            background-size: contain;
+            background-position: center;
+            margin-right: 0.2rem;
+        }
+
+        .card-title-content {
+            margin-bottom: 0.7rem;
+
+            .card-title {
+                font-size: 0.5rem;
+                font-weight: bold;
+                color: #484848;
+                font-family: 'Quicksand-Bold';
+            }
+
+            .card-money {
+                font-size: 0.5rem;
+            }
+
+            .dollar {
+                font-size: 0.3rem;
+            }
+        }
+
+        .card-content {
+            margin-bottom: 0.4rem;
+        }
+
+        .title {
+            font-size: 0.36rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #484848;
+            font-family: 'Quicksand-Bold';
+        }
+
+        .money {
+            font-size: 0.36rem;
+        }
+    }
+
+
+    .detail-content {
+        text-align: left;
+        padding: 0.42rem 0.42rem;
+        margin: 0 0.42rem 0.4rem;
+
+        .icon {
+            width: 0.7rem;
+            height: 0.7rem;
+            background-size: contain;
+            background-position: center;
+            margin-right: 0.2rem;
+        }
+
+        .card-title-content {
+            margin-bottom: 0.3rem;
+
+
+            .card-title {
+                font-size: 0.5rem;
+                font-family: 'Quicksand-Bold';
+            }
+
+            .card-money {
+                font-size: 0.5rem;
+            }
+
+            .spent {
+                font-size: 0.3rem;
+                margin-left: 0.1rem;
+            }
+        }
+
+        .card-item {
+
+            .card-item-line {
+                border-top: 1px solid #e4e4e4;
+                padding: 0.25rem 0 0.4rem;
+
+
+                .left-part {
+                    margin-right: 0.45rem;
+
+                    .icons {
+                        display: block;
+                        border-radius: 5px;
+                        width: 1.35rem;
+                        height: 1.35rem;
+
+                        &.icon-w-rent-utilities {
+                            background-color: #33cc99;
+                            background-size: 66.66% 66.66%;
+                            background-position: center;
+                        }
+
+                        &.icon-w-travel {
+                            background-color: #ff9900;
+                            background-size: 66% 60%;
+                            background-position: center;
+                        }
+
+                        &.icon-w-food {
+                            background-color: #ff6633;
+                            background-size: 45% 66%;
+                            background-position: center;
+                        }
+
+                        &.icon-w-shopping {
+                            background-color: #cc33cc;
+                            background-size: 55% 66%;
+                            background-position: center;
+                        }
+
+                        &.icon-w-tax {
+                            background-color: #0099cc;
+                            background-size: 45% 45%;
+                            background-position: center;
+                        }
+                    }
+                }
+
+                .right-part {
+                    width: calc(100% - 1.8rem);
+
+                    .type {
+                        font-size: 0.36rem;
+                        font-family: 'Quicksand-Bold';
+                        text-transform: uppercase;
+                    }
+
+                    .percentage {
+                        font-size: 0.36rem;
+                    }
+
+                    .progress {
+                        height: 0.23rem;
+                        width: 100%;
+                        background-color: #f8f8f8;
+                        margin: 0.32rem 0 0.1rem;
+                        border-radius: 0.15rem;
+
+                        .progress-bar {
+                            height: 100%;
+                            width: 100%;
+                            border-radius: 1em;
+
+                            &.rent-utilities {
+                                background-color: #ff9900;
+                                background: -webkit-linear-gradient(left, #ff8800, #ffaa00); /* Safari 5.1 - 6.0 */
+                                background: -o-linear-gradient(right, #ff8800, #ffaa00); /* Opera 11.1 - 12.0 */
+                                background: -moz-linear-gradient(right, #ff8800, #ffaa00); /* Firefox 3.6 - 15 */
+                                background: linear-gradient(to right, #ff8800, #ffaa00); /* normal */
+                            }
+
+                            &.travel {
+                                background-color: #ff6633;
+                                background: -webkit-linear-gradient(left, #ff5533, #ff7733); /* Safari 5.1 - 6.0 */
+                                background: -o-linear-gradient(right, #ff5533, #ff7733); /* Opera 11.1 - 12.0 */
+                                background: -moz-linear-gradient(right, #ff5533, #ff7733); /* Firefox 3.6 - 15 */
+                                background: linear-gradient(to right, #ff5533, #ff7733); /* normal */
+                            }
+
+
+                            &.food {
+                                background-color: #cc33cc;
+                                background: -webkit-linear-gradient(left, #cc22cc, #cc44cc); /* Safari 5.1 - 6.0 */
+                                background: -o-linear-gradient(right, #cc22cc, #cc44cc); /* Opera 11.1 - 12.0 */
+                                background: -moz-linear-gradient(right, #cc22cc, #cc44cc); /* Firefox 3.6 - 15 */
+                                background: linear-gradient(to right, #cc22cc, #cc44cc); /* normal */
+                            }
+
+                            &.shopping {
+                                background-color: #0099cc;
+                                background: -webkit-linear-gradient(left, #0088cc, #00aacc); /* Safari 5.1 - 6.0 */
+                                background: -o-linear-gradient(right, #0088cc, #00aacc); /* Opera 11.1 - 12.0 */
+                                background: -moz-linear-gradient(right, #0088cc, #00aacc); /* Firefox 3.6 - 15 */
+                                background: linear-gradient(to right, #0088cc, #00aacc); /* normal */
+                            }
+
+
+                            &.tax {
+                                background-color: #33cc99;
+                                background: -webkit-linear-gradient(left, #33bb99, #33dd99); /* Safari 5.1 - 6.0 */
+                                background: -o-linear-gradient(right, #33bb99, #33dd99); /* Opera 11.1 - 12.0 */
+                                background: -moz-linear-gradient(right, #33bb99, #33dd99); /* Firefox 3.6 - 15 */
+                                background: linear-gradient(to right, #33bb99, #33dd99); /* normal */
+                            }
+                        }
+                    }
+
+                    .compare {
+                        font-size: 0.36rem;
+
+                        .dollar {
+                            font-size: 0.2rem;
+                        }
+                    }
+                }
+            }
+
+            &.card-item-0 {
+                .card-item-line {
+                    border-top: none;
+                }
+            }
+        }
+
+        .view {
+            margin: 0.2rem auto 0.3rem;
+            font-size: 0.43rem;
+            font-family: 'Quicksand-Bold';
+            color: #08a5e1;
+        }
+    }
+
+
+    .chart-content {
+        text-align: left;
+        padding: 0.42rem 0.42rem;
+        margin: 0 0.42rem 0.4rem;
+
+        .icon {
+            width: 0.7rem;
+            height: 0.7rem;
+            background-size: contain;
+            background-position: center;
+            margin-right: 0.2rem;
+        }
+
+        .card-title-content {
+            margin-bottom: 0.3rem;
+
+
+            .card-title {
+                font-size: 0.5rem;
+                font-weight: bold;
+            }
+
+            .card-money {
+                font-size: 0.5rem;
+            }
+
+            .spent {
+                font-size: 0.3rem;
+                margin-left: 0.1rem;
+            }
+        }
+    }
+}
+
+.sliding-cover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    background: #ffffff;
+    opacity: 0.75;
+}
+
+/*bottom-sliding-content*/
+.bottom-sliding-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    -webkit-transition: top 2s;
+    transition: top 2s;
+
+    .bottom-card {
+        position: relative;
+        background: #ffffff;
+
+        .icon-blue-close {
+            background: url(../../assets/image/icon/blue-close.png) no-repeat;
+            background-size: contain;
+            position: absolute;
+            top: 3.7%;
+            right: 3.7%;
+            width: 1em;
+            height: 1em;
+            z-index: 11;
+        }
+
+        ion-card-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+
+        ion-card-subtitle {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+
+        .list-item {
+            border-top: 1px solid #cccccc;
+            padding: 0.5em 0;
+
+            i.icons {
+                margin: 0 1em 0 0.5em;
+            }
+
+            &:first-of-type {
+                border-top: none;
+            }
+
+            .title {
+                font-weight: bold;
+                font-size: 1.2em;
+            }
+
+            .type {
+                font-size: 1em;
+                color: #999999;
+            }
+
+            .money {
+                color: #ff6633;
+                font-size: 1.2em;
+            }
+        }
+    }
+}

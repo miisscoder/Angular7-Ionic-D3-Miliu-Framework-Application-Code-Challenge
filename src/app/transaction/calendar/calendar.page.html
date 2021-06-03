@@ -1,0 +1,115 @@
+<ion-content>
+    <div class="flex start middle top-nav">
+        <i class="icon-back" (click)="onBack()"></i>
+    </div>
+    <div class="flex space-between bottom title-nav">
+        <div class="page-title">{{data['date']}}</div>
+    </div>
+    <div *ngIf="!slideShow" class="flex space-between middle cards">
+        <ion-card class="total-card spend-card
+                          active total-card-2"
+                  routerLink="/transaction/spend">
+            <div class="flex center middle">
+                <div>
+                    <div class="card-title">Total Spend</div>
+                    <div class="flex start top amount">
+                        <div class="dollar">$</div>
+                        <div class="money">{{numberWithCommas(data['totalSpend'])}}</div>
+                    </div>
+                </div>
+                <i class="icon icon-cart"></i>
+            </div>
+        </ion-card>
+        <ion-card class="total-card income-card
+                          active total-card-2"
+                  routerLink="/transaction/income">
+            <div class="flex center middle">
+                <div>
+                    <div class="card-title">Total Income</div>
+                    <div class="flex start top amount">
+                        <div class="dollar">$</div>
+                        <div class="money">{{ numberWithCommas(data['totalIncome'])}}</div>
+                    </div>
+                </div>
+                <i class="icon icon-money-white"></i>
+            </div>
+        </ion-card>
+    </div>
+
+    <div class="week-section">
+        <div class="flex space-between middle
+             week week-title">
+            <div class="weekday">S</div>
+            <div class="weekday">M</div>
+            <div class="weekday">T</div>
+            <div class="weekday">W</div>
+            <div class="weekday">T</div>
+            <div class="weekday">F</div>
+            <div class="weekday">S</div>
+        </div>
+        <div *ngIf="!slideShow" class="months">
+            <div *ngFor="let itemM of monthData; let i = index"
+                    class="week month-weeks">
+                <div class="month">{{itemM['month']}}</div>
+                <div class="flex wrap">
+                    <div *ngFor="let itemD of itemM['dates']; let iD = index"
+                            class="weekday"
+                            (click)="popWeekdayDetail(itemD, i, iD)">
+                        <div *ngIf="itemD['date'] !== -1" class="date">{{itemD['date']}}</div>
+                        <div class="income" *ngIf="getAmountSum(itemD['income']) !== 0">
+                            ${{getAmountSum(itemD['income'])}}
+                        </div>
+                        <div class="spend" *ngIf="getAmountSum(itemD['spend']) !== 0">
+                            ${{getAmountSum(itemD['spend'])}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="slideShow" class="months">
+            <div class="week month-weeks">
+                <div class="flex wrap">
+                    <div *ngFor="let itemD of selectedMonthData['dates']; let iD = index"
+                         class="weekday"
+                         [ngClass] = "{ 'active': this.selectedMonthData['date'] === itemD['date']}"
+                         (click)="popWeekdayDetail(itemD, i, iD)">
+                        <div *ngIf="itemD['date'] !== -1" class="date">{{itemD['date']}}</div>
+                        <div class="income" *ngIf="getAmountSum(itemD['income']) !== 0">
+                            ${{getAmountSum(itemD['income'])}}
+                        </div>
+                        <div class="spend" *ngIf="getAmountSum(itemD['spend']) !== 0">
+                            ${{getAmountSum(itemD['spend'])}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+<div class="sliding-cover" *ngIf="slideShow"
+     (click)="slideMenuHide()"></div>
+
+<div #sliding class="bottom-sliding-content"
+     [ngStyle]="{ display: slideShow ? 'block' : 'none'}">
+    <ion-card class="bottom-card">
+        <ion-card-content>
+            <div *ngFor="let item of details; let i = index;"
+                 class="tr flex space-between middle">
+                <div class="flex start middle sub-tr">
+                    <div class="td td-0 flex center middle">
+                        <i class="icon icon-{{getLowerCase(item['category'])}}"></i>
+                    </div>
+                    <div class="td td-1">
+                        <div class="title">{{item['title']}}</div>
+                        <div class="category">{{item['category']}}</div>
+                    </div>
+                </div>
+                <div class="td td-2"
+                     [ngStyle]="{'color': item['category'] === 'Income' 
+                     || item['category'] === 'Other Income' 
+                     ? '#08a5e1' : '#fb543f'}">${{item['amount']}}</div>
+            </div>
+        </ion-card-content>
+    </ion-card>
+</div>

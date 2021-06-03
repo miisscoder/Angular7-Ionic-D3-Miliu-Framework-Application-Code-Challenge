@@ -1,0 +1,137 @@
+<ion-content #buttons>
+    <i class="icon-menu-button" (click)="menuOpen()"></i>
+    <div class="page-title">My Spend Dashboard</div>
+    <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide *ngFor="let card of cards; let i = index"
+                   [ngClass]="{'active':  activeCard === i}">
+            <ion-card [id]="i" 
+                      class="bank-card flex column column-space-between"
+                      [ngClass]="{'green': card.type === 'CHECKING ACC.',
+                      'orange': card.type === 'CREDIT CARD',
+                      'active' : activeCard === i}"
+                      [style.height.rem] = "activeCard === i ? 3: 2.7"
+                      [style.width.rem] = "activeCard === i ? 4.95: 4.5"
+                      (click) = "activeCard = i">
+                <div> 
+                    <div class="type">{{card.type}}</div>
+                    <div class="number">{{card.number}}</div>
+                </div>
+                <div class="flex space-between middle card-bottom">
+                    <img [src]="card.url"/> 
+                    <div class="flex end top"><div class="dollar">$</div><div class="money">{{card.money}}</div></div>
+                </div>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+    <ion-card class="current-card flex column space-between"
+              [ngClass]="{'red': details[activeCard]?.warning}">
+        <div class="flex space-between top current-card-top">
+            <div class="title">MY CURRENT <br />SPEND</div>
+            <a href="javascript:;" class="icon-budget-menu" *ngIf="!details[activeCard]?.warning"
+               (click) = "goToTransaction()">
+            </a>
+            <a href="javascript:;"  class="icon-budget-menu-red" *ngIf="details[activeCard]?.warning"
+               (click) = "goToTransaction()">
+            </a>
+        </div>
+        <div class="flex space-between bottom current-card-bottom">
+            <i class="icon-cart"></i>
+            <div class="current-card-right-content">
+                <div class="flex end top">
+                    <div class="dollar">$</div>
+                    <div class="money">{{details[activeCard]?.currentSpend}}</div>
+                </div>
+                <div class="typical flex end middle">
+                    <div>Typical Spend $</div>
+                    <div>{{details[activeCard]?.typicalSpend}}</div>
+                </div>
+            </div>
+        </div>
+    </ion-card>
+    <ion-card *ngIf="details[activeCard]?.budgetSet && details[activeCard]?.warning"
+              class="warning-card flex start middle"
+               (click)="slideMenuShow()">
+        <i class="icon-warning"></i>
+        <div class="text-right">
+            <span *ngIf="details[activeCard]?.warning === 'likely-to'">You are likely to go out of budget this month.</span>
+            <span *ngIf="details[activeCard]?.warning === 'out-of-budget'">You are out of budget this month.</span>
+            <a href="javascript:;" class="text-warning">Tell me why?</a>
+        </div>
+    </ion-card>
+    <ion-card *ngIf="details[activeCard]?.budgetSet" 
+              class="battery-card">
+        <div class="bk">
+            <div class="number" *ngIf=""
+                 [style.color]="getNumber(details[activeCard]?.percentage) > 25 ? '#0099cc': '#ff6633'">
+                {{details[activeCard]?.percentage}}
+            </div>
+        </div>
+        <div class="flex end middle percentage" [ngStyle]="{'width': getNumber(details[activeCard]?.percentage) >
+            0 ? details[activeCard]?.percentage: '0',
+            'background-color': ( getNumber(details[activeCard]?.percentage) > 25 ?
+            'rgba(0, 135, 204, 0.9)': 'rgba(251, 84, 63, 0.8)') }">
+            <div class="number"
+                 [ngStyle]="{'color': getNumber(details[activeCard]?.percentage) > 0 ? '#ffffff' :
+                 '#ff6633' }">{{details[activeCard]?.percentage}}</div>
+        </div>
+    </ion-card>
+    <ion-card *ngIf="details[activeCard]?.budgetSet" 
+              class="detail-card flex space-between middle">
+        <div class="detail-item flex column space-around">
+            <div class="title">My Budget</div>
+            <div class="number">${{numberWithCommas(details[activeCard]?.myBudget)}}</div>
+        </div>
+        <div class="detail-item flex column space-around"
+             *ngIf="getNumber(details[activeCard]?.percentage) >= 0 ">
+            <div class="title">Remaining</div>
+            <div class="number">${{numberWithCommas(details[activeCard]?.remaining)}}</div>
+        </div>
+        <div class="detail-item flex column space-around"
+             *ngIf="getNumber(details[activeCard]?.percentage) < 0 ">
+            <div class="title">Over budget by</div>
+            <div class="number red-number">${{numberWithCommas(details[activeCard]?.overBudgetBy)}}</div>
+        </div>
+    </ion-card>
+    <ion-card class="set-budget-card flex column center" 
+              *ngIf="!details[activeCard]?.budgetSet">
+        <i class="icon-money"></i>
+        <div class="text-set">
+            Set up your budget to get a budget<br />
+            summary view here.
+        </div>
+        <a href="javascript:;" class="btn-blue"
+           [routerDirection]="'root'" routerLink="/budget">Set My Budget</a>
+    </ion-card>
+</ion-content>
+<div class="sliding-cover"  *ngIf="slideShow"
+      (click)="slideMenuHide()"></div>
+<div #sliding class="bottom-sliding-content"
+     *ngIf="slideShow">
+    <ion-card class="bottom-card" *ngIf="slideShow">
+        <a href="javascript:;" (click)="slideMenuHide()">
+            <i class="icon-blue-close"></i>
+        </a>
+            <ion-card-title>Why i am red?</ion-card-title>
+            <p>
+                Lorem ipsum dolor sit amet, comsectetuer
+                adipscing elt, sed diam nonummy nibh.
+            </p>
+            <ion-card-subtitle>{{details[activeCard]?.transactions?.length + ' largest transactions'}}</ion-card-subtitle>
+            <div class="list-items">
+                <div *ngFor="let item of details[activeCard].transactions; let i = index;"
+                     class="flex space-between middle list-item">
+                    <div class="flex start middle">
+                        <div class="date">{{item.date}}</div>
+                        <i class="icons icon-{{getLowerCase(item.type)}}"
+                           [style.width.px]="0.083 * width"
+                           [style.height.px]="0.083 * width"></i>
+                        <div class="">
+                            <div class="title">{{item.title}}</div>
+                            <div class="type">{{item.type}}</div>
+                        </div>
+                    </div>
+                    <div class="money">${{item.money}}</div>
+                </div>  
+            </div>
+    </ion-card>
+</div>     

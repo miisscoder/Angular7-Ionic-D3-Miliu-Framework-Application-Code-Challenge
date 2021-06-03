@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<!-- 
+  Visual Studio global web project settings.
+-->
+<VisualWebDeveloper>
+
+  <Globals>
+    <UserProperties assets_4data_4GetGoal_1json__JSONSchema="https://bucklescript.github.io/bucklescript/docson/build-schema.json"/>
+  </Globals>
+</VisualWebDeveloper>

@@ -1,0 +1,209 @@
+<ion-content>
+    <div class="flex space-between bottom top-nav">
+        <i class="icon-menu-button" (click)="menuOpen()"></i>
+        <div class="flex end bottom right-nav">
+            <a href="javascript:;" routerLink="/budget/alert" >Set Alert</a>
+            <span>.</span>
+            <a href="javascritp:;" (click)="onBack()">Back</a>
+        </div>
+    </div>
+    <div class="page-title">My Budget</div>
+    <ion-card class="flex column space-between income-card">
+        <div class="flex space-between middle
+              card-title-content">
+            <div class="flex start middle">
+                <i class="icon-money-black"></i>
+                <div class="card-title">My Income</div>
+            </div>
+            <div class="flex end top">
+                <div class="dollar">$</div>
+                <div class="card-money">{{numberWithCommas(data.income)}}</div>
+            </div>
+        </div>
+        <div class="flex space-between middle card-content">
+            <div class="title">Salary</div>
+            <div class="money">${{numberWithCommas(data.salary)}}</div>
+        </div>
+        <div class="flex space-between middle">
+            <div class="title">Other Income</div>
+            <div class="money">${{numberWithCommas(data.otherIncome)}}</div>
+        </div>
+    </ion-card>
+    <ion-card class="flex column space-between detail-content">
+        <div class="flex space-between middle
+              card-title-content">
+            <div class="flex start middle">
+                <i class="icon icon-my-spend"></i>
+                <div class="card-title">My Spend</div>
+            </div>
+            <div class="flex end middle">
+                <div class="card-money">
+                    {{'$'+ numberWithCommas(data.spend?.count) +' of $'
+                    + numberWithCommas(data.spend?.budget) +' '}}
+                </div>
+                <div class="spent">spent</div>
+            </div>
+        </div>
+        <div class="card-item card-item-{{i}}"
+             *ngFor="let item of data.spend?.items; let i = index;" >
+            <div class="flex start middle card-item-line" *ngIf="spendExpand || i < 2">
+                <div class="left-part flex center middle"><i class="icons icon-w-{{getIconName(item.type)}}"></i></div>
+                <div class="right-part">
+                    <div class="flex space-between middle">
+                        <div class="type">{{item.type}}</div>
+                        <div class="percentage">{{getInteger(item.count / item.budget * 100)  +'%'}}</div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar {{getIconName(item.type)}}"
+                             [style.width]="item.count / item.budget > 1?
+                         '100%' : getInteger(item.count / item.budget * 100) +'%'"></div>
+                    </div>
+                    <div class="flex space-between middle">
+                        <div class="compare flex start top">
+                            <span class="dollar">$</span>
+                            <span>
+                                {{
+                        numberWithCommas(item.count) + ' of $' +
+                        numberWithCommas(item.budget) + ' spent'
+                                }}
+                            </span>
+                        </div>
+                        <div class="over"
+                             [style.opacity]="item.count - item.budget > 0 ? 1 : 0 ">
+                            {{'$ '+ (item.count - item.budget) + ' over'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="javascript:;" *ngIf="!spendExpand" (click)="spendExpand = true;"
+           class="view" >View +{{data.spend?.items.length - 2}} categories</a>
+    </ion-card>
+    <ion-card class="flex column space-between detail-content">
+        <div class="flex space-between middle
+              card-title-content">
+            <div class="flex start middle">
+                <i class="icon icon-my-borrowings"></i>
+                <div class="card-title">My Borrowings</div>
+            </div>
+            <div class="flex end middle">
+                <div class="card-money">
+                    {{
+'$'+ numberWithCommas(data.borrowings?.count) +' of $'
+                    + numberWithCommas(data.borrowings?.budget) +' '
+}}
+                </div>
+                <div class="spent">paid</div>
+            </div>
+        </div>
+        <div class="card-item card-item-{{i}}"
+             *ngFor="let item of data.borrowings?.items; let i = index;">
+            <div class="flex start middle card-item-line" *ngIf="borrowingsExpand || i < 2">
+                <div class="left-part flex center middle"><i class="icons icon-w-{{getIconName(item.type)}}"></i></div>
+                <div class="right-part">
+                    <div class="flex space-between middle">
+                        <div class="type">{{item.type}}</div>
+                        <div class="percentage">{{getInteger(item.count / item.budget * 100)  +'%'}}</div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar {{getIconName(item.type)}}"
+                             [style.width]="item.count / item.budget > 1?
+                         '100%' : getInteger(item.count / item.budget * 100) +'%'"></div>
+                    </div>
+                    <div class="flex space-between middle">
+                        <div class="compare flex start top">
+                            <span class="dollar">$</span>
+                            <span>
+                                {{
+                        numberWithCommas(item.count) + ' of $' +
+                        numberWithCommas(item.budget) + ' spent'
+                                }}
+                            </span>
+                        </div>
+                        <div class="over"
+                             [style.opacity]="item.count - item.budget > 0 ? 1 : 0 ">
+                            {{'$ '+ (item.count - item.budget) + ' over'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="javascript:;" *ngIf="!borrowingsExpand" (click)="borrowingsExpand = true;"
+           class="view">View +{{data.borrowings?.items.length - 2}} categories</a>
+    </ion-card>
+    <ion-card class="flex column space-between detail-content">
+        <div class="flex space-between middle
+              card-title-content">
+            <div class="flex start middle">
+                <i class="icon icon-my-protection"></i>
+                <div class="card-title">My Protection</div>
+            </div>
+            <div class="flex end middle">
+                <div class="card-money">
+                    {{
+'$'+ numberWithCommas(data.protection?.count) + ' of $'
+                    + numberWithCommas(data.protection?.budget) + ' '
+}}
+                </div>
+                <div class="spent">paid</div>
+            </div>
+        </div>
+        <div class="card-item card-item-{{i}}"
+             *ngFor="let item of data.protection?.items; let i = index;">
+            <div class="flex start middle card-item-line" 
+                 *ngIf="protectionExpand || i < 2">
+                <div class="left-part flex center middle">
+                    <i class="icons icon-w-{{getIconName(item.type)}}"></i>
+                </div>
+                <div class="right-part">
+                    <div class="flex space-between middle">
+                        <div class="type">{{item.type}}</div>
+                        <div class="percentage">{{getInteger(item.count / item.budget * 100)  +'%'}}</div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar {{getIconName(item.type)}}"
+                             [style.width]="item.count / item.budget > 1?
+                         '100%' : getInteger(item.count / item.budget * 100) +'%'"></div>
+                    </div>
+                    <div class="flex space-between middle">
+                        <div class="compare flex start top">
+                            <span class="dollar">$</span>
+                            <span>
+                                {{
+                        numberWithCommas(item.count) + ' of $' +
+                        numberWithCommas(item.budget) + ' spent'
+                                }}
+                            </span>
+                        </div>
+                        <div class="over"
+                             [style.opacity]="item.count - item.budget > 0 ? 1 : 0 ">
+                            {{'$ '+ (item.count - item.budget) + ' over'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="javascript:;" *ngIf="!protectionExpand" 
+           (click)="protectionExpand = true;"
+           class="view">View +{{data.spend?.items.length - 2}} categories</a>
+    </ion-card>
+    <ion-card class="flex column space-between chart-content">
+        <div class="flex space-between middle
+              card-title-content">
+            <div class="flex start middle">
+                <i class="icon icon-my-growth"></i>
+                <div class="card-title">My Growth</div>
+            </div>
+            <div class="flex end bottom">
+                <div class="card-money">
+                    {{'$'+ numberWithCommas(data.growth?.count) +' of $'
+                    + numberWithCommas(data.growth?.budget) +' '
+                    }}
+                </div>
+                <div class="spent">saved</div>
+            </div>
+        </div>
+        <div id="chart">
+        </div>
+    </ion-card>
+</ion-content>

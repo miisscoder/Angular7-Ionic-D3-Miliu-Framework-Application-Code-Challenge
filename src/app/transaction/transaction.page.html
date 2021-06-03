@@ -1,0 +1,182 @@
+<ion-content class="transactions">
+    <div class="flex space-between middle top-nav">
+        <i class="icon-menu-button" (click)="menuOpen()"></i>
+        <div class="flex end middle">
+            <i class="icon-calendar" routerLink="/transaction/calendar"></i>
+            <i class="icon-filter" routerLink="/transaction/filter"></i>
+        </div>
+    </div>
+    <div class="flex space-between bottom title-nav">
+        <div class="page-title">My Transactions</div>
+        <div class="date">{{data['date']}}</div>
+    </div>
+    <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide>
+            <div class="flex space-between middle">
+                <ion-card class="total-card spend-card"
+                          (click)="onClickCard('spend')"
+                          [ngClass]="{'active': spendActive}">
+                    <div class="card-title">Total Spend</div>
+                    <div class="flex center top amount">
+                        <div class="dollar">$</div>
+                        <div class="money">{{ numberWithCommas(data['totalSpend'])}}</div>
+                    </div>
+                </ion-card>
+                <div id="chart"></div>
+                <ion-card class="total-card income-card"
+                          (click)="onClickCard('income')"
+                          [ngClass]="{'active': !spendActive}">
+                    <div class="card-title">Total Income</div>
+                    <div class="flex center top amount">
+                        <div class="dollar">$</div>
+                        <div class="money">{{ numberWithCommas(data['totalIncome'])}}</div>
+                    </div>
+                </ion-card>
+            </div>
+            <div *ngIf="spendActive" class="table">
+                <div class="tr flex start middle">
+                    <div class="th th-0"></div>
+                    <div *ngFor="let itemColumn of columns; let i = index"
+                         class="th th-{{i + 1}} flex start middle"
+                         (click)="onSort(itemColumn['prop'], 'spend', itemColumn['sort'])">
+                        <span>{{itemColumn['title']}}</span>
+                        <i class="icon-sort"
+                           *ngIf="itemColumn['sort']"
+                           [ngStyle]="{'transform' :
+                               itemColumn['sortDirectionS'] === 'asc'?
+                                'rotate(180deg)' : 'rotate(0deg)'}"></i>
+                    </div>
+                </div>
+                <div class="tr flex start middle"
+                     *ngFor="let item of data['spend']"
+                     (click)="onClickRow(item.category, 'spend')">
+                    <div class="td td-0 flex center middle">
+                        <i class="icon icon-{{getLowerCase(item.category)}}"></i>
+                    </div>
+                    <div class="td td-1">{{item['category']}}</div>
+                    <div class="td td-2">{{item['percent']}}%</div>
+                    <div class="td td-3">${{item['amount']}}</div>
+                </div>
+            </div>
+            <div *ngIf="!spendActive" class="table">
+                <div class="tr flex start middle">
+                    <div class="th th-0"></div>
+                    <div *ngFor="let itemColumn of columns; let i = index"
+                         class="th th-{{i + 1}} flex start middle"
+                         (click)="onSort(itemColumn['prop'], 'income', itemColumn['sort'])">
+                        <span>{{itemColumn['title']}}</span>
+                        <i class="icon-sort"
+                           *ngIf="itemColumn['sort']"
+                           [ngStyle]="{'transform' :
+                               itemColumn['sortDirectionI'] === 'asc'?
+                                'rotate(180deg)' : 'rotate(0deg)'}"></i>
+                    </div>
+                </div>
+                <div class="tr flex start middle"
+                     *ngFor="let item of data['income']"
+                     (click)="onClickRow(item.category, 'income')">
+                    <div class="td td-0 flex center middle">
+                        <i class="icon icon-{{getLowerCase(item.category)}}"></i>
+                    </div>
+                    <div class="td td-1">{{item['category']}}</div>
+                    <div class="td td-2">{{item['percent']}}%</div>
+                    <div class="td td-3">${{item['amount']}}</div>
+                </div>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="flex space-between top">
+                <ion-card class="total-card spend-card
+                          active total-card-2" 
+                          routerLink="/transaction/spend">
+                    <div class="flex center middle">
+                        <div>
+                            <div class="card-title">Total Spend</div>
+                            <div class="flex start top amount">
+                                <div class="dollar">$</div>
+                                <div class="money">{{ numberWithCommas(data['totalSpend'])}}</div>
+                            </div>
+                        </div>
+                        <i class="icon icon-cart"></i>
+                    </div>
+                </ion-card>
+                <ion-card class="total-card income-card
+                          active total-card-2" routerLink="/transaction/income">
+                    <div class="flex center middle">
+                        <div>
+                            <div class="card-title">Total Income</div>
+                            <div class="flex start top amount">
+                                <div class="dollar">$</div>
+                                <div class="money">{{ numberWithCommas(data['totalIncome'])}}</div>
+                            </div>
+                        </div>
+                        <i class="icon icon-money-white"></i>
+                    </div>
+                </ion-card>
+            </div>
+            <ion-list>
+                <div *ngFor="let item of data['diary'];let i = index">
+                    <ion-item class="date">{{item['date']}}</ion-item>
+                    <ion-item-sliding *ngFor="let it of item['details'];let j = index">
+                        <ion-item class="detail">
+                            <div class="flex space-between middle detail-content">
+                                <div class="flex start middle">
+                                    <i class="icon icon-{{getLowerCase(it.category)}}"></i>
+                                    <div>
+                                        <div class="title">{{it['title']}}</div>
+                                        <div class="category">{{it['category']}}</div>
+                                    </div>
+                                </div>
+                                <div class="amount"
+                                     [ngStyle]="{'color':
+                                 'other income' === it['category'].toLocaleLowerCase() ||   
+                                 'income' === it['category'].toLocaleLowerCase() ? '#0099cc':'#ff6633'}">
+                                    ${{it['amount']}}
+                                </div>
+                            </div>
+                        </ion-item>
+                        <ion-item-options side="end">
+                            <ion-item-option class="flex center middle">
+                                 <a href="javascript" class="btn-retag">Retag</a><span>.</span><a href="javascript" class="btn-detail">Detail</a>
+                            </ion-item-option>
+                        </ion-item-options>
+                    </ion-item-sliding>
+                </div>
+            </ion-list>
+        </ion-slide>
+    </ion-slides>
+</ion-content>
+
+<div class="sliding-cover" *ngIf="slideShow"
+     (click)="slideMenuHide()"></div>
+
+<div #sliding class="bottom-sliding-content"
+     *ngIf="slideShow">
+    <ion-card class="bottom-card">
+        <ion-card-content>
+            <div class="tr th flex start middle">
+                <div class="td td-0 flex center middle">
+                    <i class="icon icon-{{getLowerCase(slideData['category'])}}"></i>
+                </div>
+                <div class="td td-1">{{slideData['category']}}</div>
+                <div class="td td-2">{{slideData['percent']}}%</div>
+                <div class="td td-3">${{slideData['amount']}}</div>
+            </div>
+            <div *ngFor="let item of slideData['details']; let i = index;"
+                 class="it">
+                <div class="flex start middle tr tr-{{i}} " *ngIf="i < 3">
+                    <div class="td td-0 ">{{item.date}}</div>
+                    <div class="flex start middle sub-tr">
+                        <div class="td td-1">{{item.title}}</div>
+                        <div class="td td-2">{{item.percent}}%</div>
+                        <div class="td td-3">${{item.amount}}</div>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:;" class="view">View more transactions</a>
+        </ion-card-content>
+    </ion-card>
+    <a href="javascript:;" class="close-btn flex center middle" (click)="slideMenuHide()">
+        <i class="icon-close-s"></i>
+    </a>
+</div>

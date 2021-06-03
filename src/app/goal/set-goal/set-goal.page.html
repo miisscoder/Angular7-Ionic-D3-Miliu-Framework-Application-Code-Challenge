@@ -1,0 +1,82 @@
+<ion-content>
+    <div class="flex space-between middle top-nav">
+        <a href="javascript:;" (click)="onBack()">Cancel</a>
+        <a href="javascript:;" (click)="onSave()">Save</a>
+    </div>
+    <div class="page-title">Set Goal</div>
+    <ion-list>
+        <div class="ion-item">
+            <ion-label>NAME</ion-label>
+            <ion-input [ngModel]="items['name']"></ion-input>
+        </div>
+        <div class="ion-item">
+            <ion-label>CATEGORY</ion-label>
+            <div class="flex space-between middle
+                     dropdown-controller"
+                 (click)="expandCategory = !expandCategory">
+                <div>{{selectedCategory}}</div>
+                <i class="icon-dropdown"
+                   [ngStyle]="{'transform': expandCategory ?
+                   'rotate(180deg)': 'rotate(0deg)'}"></i>
+            </div>
+            <div *ngIf="expandCategory" class="dropdown-content">
+                <div *ngFor="let item of optionsCategory"
+                     class="flex space-between middle dropdown-content-item"
+                     (click)="onSelectCategory(item)"
+                     [ngStyle]="{ 'font-weight': item === selectedCategory ?
+                     'bold' : 'normal'}">
+                    <div [ngStyle]="{'color': item === selectedCategory ?
+                     '#08a5e1' : '#484848' }">{{item}}</div>
+                    <i *ngIf="item === selectedCategory" class="icon-check"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ion-item">
+            <ion-label>AMOUNT</ion-label>
+            <ion-input class="amount" [(ngModel)]="items['amount']"></ion-input>
+        </div>
+        <div class="ion-item date">
+            <i class="icon-dropdown"></i>
+            <ion-label class="date">START DATE</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY"
+                          min="1989-06-04" max="2050-08-23" placeholder="Select Date" [(value)]="items['startDate']"></ion-datetime>
+        </div>
+        <div class="flex space-between middle">
+            <div class="ion-item half">
+                <ion-label>COMPLETION MONTH</ion-label>
+                <ion-datetime displayFormat="MMMM" placeholder="Select Month" [(value)]="items['completionMonth']"></ion-datetime>
+            </div>
+            <div class="ion-item half">
+                <ion-label>COMPLETION YEAR</ion-label>
+                <ion-datetime displayFormat="YYYY" placeholder="Select Year"
+                               [(value)]="items['completionYear']"></ion-datetime>
+            </div>
+        </div>
+        <div class="ion-item funding">
+            <ion-label>FUNDING ACCOUNT</ion-label>
+            <div class="flex space-between middle
+                     dropdown-controller"
+                 (click)="expandFundingAccount = !expandFundingAccount">
+                <div>{{selectedFundingAccount}}</div>
+                <i class="icon-dropdown"
+                   [ngStyle]="{'transform': expandFundingAccount ?
+                   'rotate(180deg)': 'rotate(0deg)'}"></i>
+            </div>
+            <div *ngIf="expandFundingAccount" class="dropdown-content">
+                <div *ngFor="let item of optionsFundingAccount"
+                     class="flex space-between middle dropdown-content-item"
+                     (click)="onSelectFundingAccount(item)"
+                     [ngStyle]="{ 'font-weight': item === selectedFundingAccount ?
+                     'bold' : 'normal'}">
+                    <div [ngStyle]="{'color': item === selectedFundingAccount ?
+                     '#08a5e1' : '#484848' }">{{item}}</div>
+                    <i *ngIf="item === selectedFundingAccount" class="icon-check"></i>
+                </div>
+            </div>
+        </div>
+    </ion-list>
+    <div class="set-bottom flex space-between middle">
+        <div class="monthly">Monthly Contributuion</div>
+        <div class="contribution">{{items['amount']}}</div>
+    </div>
+</ion-content>
