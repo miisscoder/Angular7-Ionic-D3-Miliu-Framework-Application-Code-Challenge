@@ -30,3 +30,6 @@ The build artifacts will be stored in the `dist/` directory. Use the `--prod` fl
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Notes
+if error about "node-sass" happens , run:
+npm uninstall --save node-sass
+npm install --save node-sass
