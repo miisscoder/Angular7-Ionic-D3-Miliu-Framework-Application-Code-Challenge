@@ -7,7 +7,7 @@ Deployment Guide
 Money Management APP
 
 ## Prerequisites
-1. Node 12.x
+1. Node 10.x
 2. NPM
 3. Angular 6
 4. SCSS
